@@ -62,7 +62,7 @@ services:
       api:
         condition: service_healthy
     ports:
-      - "127.0.0.1:${PORT:-8086}:8080"
+      - "127.0.0.1:${PORT:-8087}:8080"
     logging:
       driver: json-file
       options: { max-size: "10m", max-file: "3" }
