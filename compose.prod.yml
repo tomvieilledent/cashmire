@@ -1,0 +1,68 @@
+# Runtime `compose` de l'orchestrateur vlldnt (portfolio/scripts/deploy-project.sh,
+# compose_file: compose.prod.yml). Secrets injectés via
+# `--env-file /opt/vlldnt/config/cashmire.env`. Seul le port web est exposé,
+# en loopback ; nginx (VPS) fait le proxy TLS vers 127.0.0.1:${PORT}.
+name: cashmire
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cashmire}
+      POSTGRES_USER: ${POSTGRES_USER:-cashmire}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD requis}
+    volumes:
+      - ${PGDATA_DIR:-./.pgdata}:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cashmire}"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?DJANGO_SECRET_KEY requis}
+      DJANGO_DEBUG: "false"
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-cashmire.vlldnt.fr}
+      DJANGO_CORS_ALLOWED_ORIGINS: ${DJANGO_CORS_ALLOWED_ORIGINS:-https://cashmire.vlldnt.fr}
+      POSTGRES_HOST: db
+      POSTGRES_DB: ${POSTGRES_DB:-cashmire}
+      POSTGRES_USER: ${POSTGRES_USER:-cashmire}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             gunicorn cashmire.wsgi:application --bind 0.0.0.0:8000 --workers 3 --access-logfile -"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        VITE_API_URL: ${VITE_API_URL:-https://cashmire.vlldnt.fr}
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${PORT:-8086}:8080"
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }

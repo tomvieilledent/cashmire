@@ -1,9 +1,10 @@
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-static";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter(),
+    // SPA (ssr = false): every route falls back to index.html.
+    adapter: adapter({ fallback: "index.html" }),
   },
 };
 

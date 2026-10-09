@@ -159,3 +159,11 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Production behind the reverse proxy (compose.prod.yml): TLS is terminated
+# upstream, so trust X-Forwarded-Proto and mark the cookies Secure. Left off
+# in DEBUG so local HTTP development keeps working.
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
