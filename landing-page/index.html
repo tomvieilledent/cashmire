@@ -66,37 +66,33 @@ h2{margin:0 0 10px;font-family:var(--serif);font-weight:600;font-size:clamp(1.55
 .stack{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
 .stack li{padding:7px 16px;border:1px solid var(--border);border-radius:999px;background:var(--card);font-size:.9rem}
 .final{text-align:center}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 28px;margin:0}
+.facts div{padding:14px 0;border-top:1px solid var(--border)}
+.facts dt{font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:4px 0 0;color:var(--text)}
+.card .k.ok{color:var(--ok)}.card .k.warn{color:var(--wip)}.card .k.full{color:#a4501a}.card .k.over{color:#a33a2a}.card .k.todo{color:var(--muted)}
+.card .k{font-weight:600}
 footer{padding:28px 0 40px;border-top:1px solid var(--border);font-size:.85rem;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.badge i{animation:none}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="./"><img src="./favicon.svg" alt="" width="30" height="30" />Cashmire</a><nav aria-label="Navigation principale"><a href="#fonctions">Fonctions</a><a href="#apercu">Aperçu</a><a href="#budgets">Budgets</a><a href="#technique">Technique</a><a href="https://vlldnt.fr/">← vlldnt.fr</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="./"><img src="./favicon.svg" alt="" width="30" height="30" />Cashmire</a><nav aria-label="Navigation principale"><a href="#projet">Le projet</a><a href="#apercu">Aperçu</a><a href="#details">Détails</a><a href="#technique">Technique</a><a href="https://vlldnt.fr/">← vlldnt.fr</a></nav></div></header>
 <main>
 <section class="hero"><div class="wrap"><p class="badge live" style="--bc:var(--wip)"><i></i>Projet Holberton School</p><h1>Le luxe discret pour votre <em>budget</em></h1><p class="lead">Notez vos dépenses, fixez des budgets par catégorie et voyez en un coup d&#x27;œil où vous en êtes. Simple, sobre, précis au centime.</p><div class="cta-row"><a class="btn primary" href="https://cashmire.vlldnt.fr" rel="noopener">Ouvrir l&#x27;application</a><a class="btn ghost" href="https://github.com/ClaymeCall/holbertonschool-cashmire" rel="noopener">Code source</a></div>
 <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="./portfolio.png" width="1600" height="986" alt="Tableau de bord de Cashmire : budget contre dépensé par catégorie, répartition de la période et dépenses des 30 derniers jours." /></div></div></section>
-<section id="fonctions"><div class="wrap"><h2>Tout ce qu&#x27;il faut, rien de superflu</h2><p class="sub">Cashmire se concentre sur l&#x27;essentiel : savoir ce que l&#x27;on dépense et si l&#x27;on tient ses objectifs.</p>
-<div class="grid"><article class="card"><h3>Dépenses</h3><p>Ajout, modification et filtre par catégorie et par date.</p></article><article class="card"><h3>Budgets par période</h3><p>Un montant, une catégorie, une période : la consommation est calculée automatiquement.</p></article><article class="card"><h3>Tableau de bord</h3><p>Budget contre dépensé, répartition de la période et tendance sur 30 jours.</p></article><article class="card"><h3>Seuils d&#x27;alerte</h3><p>Prévenu avant la limite : 80 % par défaut, réglable pour chaque budget.</p></article><article class="card"><h3>Données privées</h3><p>Connexion par session sécurisée : catégories et chiffres ne sont visibles que de leur propriétaire.</p></article><article class="card"><h3>Précis au centime</h3><p>Calculs en décimal exact, jamais en flottant : aucune erreur d&#x27;arrondi.</p></article></div>
-</div></section>
-<section class="band" id="apercu"><div class="wrap"><h2>Aperçu</h2><p class="sub">Captures de l&#x27;application avec le compte de démonstration.</p>
-<div class="gallery">
+<section id="projet"><div class="wrap"><h2>Le projet</h2><p class="sub">Cashmire se concentre sur l&#x27;essentiel : savoir ce que l&#x27;on dépense et si l&#x27;on tient ses objectifs. Un compte avec un e-mail et un mot de passe suffit ; 12 catégories par défaut sont ajoutées à l&#x27;inscription.</p><div class="grid"><article class="card"><h3>Dépenses</h3><p>Ajout, modification et filtre par catégorie et par date.</p></article><article class="card"><h3>Budgets par période</h3><p>Un montant, une catégorie, une période : la consommation est calculée automatiquement.</p></article><article class="card"><h3>Tableau de bord</h3><p>Budget contre dépensé, répartition de la période et tendance sur 30 jours.</p></article><article class="card"><h3>Seuils d&#x27;alerte</h3><p>Prévenu avant la limite : 80 % par défaut, réglable pour chaque budget.</p></article><article class="card"><h3>Données privées</h3><p>Connexion par session sécurisée : catégories et chiffres ne sont visibles que de leur propriétaire.</p></article><article class="card"><h3>Précis au centime</h3><p>Calculs en décimal exact, jamais en flottant : aucune erreur d&#x27;arrondi.</p></article></div></div></section>
+<section class="band" id="apercu"><div class="wrap"><h2>Aperçu</h2><p class="sub">Captures de l&#x27;application avec le compte de démonstration.</p><div class="gallery">
 <figure><img src="./shot-budgets.jpg" loading="lazy" alt="Liste des budgets : chaque carte indique le montant dépensé, le restant, un pourcentage et un statut." /><figcaption>Budgets, avec leur statut calculé.</figcaption></figure>
 <figure><img src="./shot-depenses.jpg" loading="lazy" alt="Liste des dépenses : montant, catégorie, date et libellé." /><figcaption>Dépenses, par date.</figcaption></figure>
 <figure><img src="./shot-connexion.jpg" loading="lazy" alt="Écran de connexion de Cashmire." /><figcaption>Connexion.</figcaption></figure>
 <figure class="tall"><img src="./shot-mobile.jpg" loading="lazy" alt="Cashmire sur téléphone." /><figcaption>Version mobile.</figcaption></figure>
-</div>
-</div></section>
-<section id="budgets"><div class="wrap"><h2>Quatre statuts, toujours lisibles</h2><p class="sub">Chaque budget affiche un statut calculé côté serveur. La couleur n&#x27;est jamais seule : un libellé l&#x27;accompagne.</p>
-<ul class="status"><li><b class="st-ok">Sous contrôle</b><span>Transport — 42,00 € sur 150,00 €</span></li><li><b class="st-warn">Proche de la limite</b><span>Alimentation — 415,50 € sur 500,00 €</span></li><li><b class="st-full">Budget atteint</b><span>Loisirs — 80,00 € sur 80,00 €</span></li><li><b class="st-over">Budget dépassé</b><span>Vêtements — 130,00 € sur 100,00 €</span></li></ul>
-</div></section>
-<section id="etapes"><div class="wrap"><h2>Prêt en trois étapes</h2><p class="sub">Un compte avec un e-mail et un mot de passe, et c&#x27;est parti.</p>
-<ol class="steps"><li><h3>Créez votre compte</h3><p>12 catégories par défaut sont ajoutées automatiquement.</p></li><li><h3>Fixez vos budgets</h3><p>Choisissez une catégorie, un montant et une période.</p></li><li><h3>Suivez vos dépenses</h3><p>Chaque dépense met à jour vos budgets et vos graphiques.</p></li></ol>
-</div></section>
-<section class="band" id="technique"><div class="wrap"><h2>Sous le capot</h2><p class="sub">Projet réalisé en équipe de trois à Holberton School, en quatre jours : API REST, interface monopage et déploiement conteneurisé.</p>
-<ul class="stack" aria-label="Technologies utilisées"><li>Django 5</li><li>Django REST Framework</li><li>PostgreSQL 16</li><li>SvelteKit · Svelte 5</li><li>LayerChart</li><li>Docker Compose</li><li>Authentification par session + CSRF</li><li>OpenAPI</li></ul>
-</div></section>
-<section class="final"><div class="wrap"><h2>Gardez la main sur votre budget</h2><p class="sub" style="margin-inline:auto">Essayez Cashmire ou parcourez le code source.</p><div class="cta-row"><a class="btn primary" href="https://cashmire.vlldnt.fr" rel="noopener">Ouvrir l&#x27;application</a><a class="btn ghost" href="https://github.com/ClaymeCall/holbertonschool-cashmire" rel="noopener">Voir le code</a></div></div></section>
+</div></div></section>
+<section id="details"><div class="wrap"><h2>Quatre statuts, toujours lisibles</h2><p class="sub">Le statut de chaque budget est calculé côté serveur. La couleur n&#x27;est jamais seule : un libellé l&#x27;accompagne.</p><div class="grid"><article class="card"><h3>Transport</h3><p>42,00 € sur 150,00 €</p><p class="k ok">Sous contrôle</p></article><article class="card"><h3>Alimentation</h3><p>415,50 € sur 500,00 €</p><p class="k warn">Proche de la limite</p></article><article class="card"><h3>Loisirs</h3><p>80,00 € sur 80,00 €</p><p class="k full">Budget atteint</p></article><article class="card"><h3>Vêtements</h3><p>130,00 € sur 100,00 €</p><p class="k over">Budget dépassé</p></article></div></div></section>
+<section class="band" id="infos"><div class="wrap"><h2>Fiche du projet</h2><dl class="facts" style="margin-top:22px"><div><dt>Contexte</dt><dd>Projet d'équipe Holberton School — 3 personnes, 4 jours</dd></div><div><dt>Ma part</dt><dd>Budgets, architecture, hébergement</dd></div><div><dt>Stack</dt><dd>Django · SvelteKit · PostgreSQL</dd></div><div><dt>Accès</dt><dd><a href="https://cashmire.vlldnt.fr">cashmire.vlldnt.fr</a></dd></div></dl></div></section>
+<section id="technique"><div class="wrap"><h2>Technique</h2><p class="sub">API REST, interface monopage et déploiement conteneurisé.</p><ul class="stack" aria-label="Technologies utilisées"><li>Django 5</li><li>Django REST Framework</li><li>PostgreSQL 16</li><li>SvelteKit · Svelte 5</li><li>LayerChart</li><li>Docker Compose</li><li>Authentification par session + CSRF</li><li>OpenAPI</li></ul></div></section>
+<section class="final band" style="border-bottom:0"><div class="wrap"><h2>Gardez la main sur votre budget</h2><p class="sub" style="margin-inline:auto">Essayez Cashmire ou parcourez le code source.</p><div class="cta-row"><a class="btn primary" href="https://cashmire.vlldnt.fr" rel="noopener">Ouvrir l&#x27;application</a><a class="btn ghost" href="https://github.com/ClaymeCall/holbertonschool-cashmire" rel="noopener">Voir le code</a></div></div></section>
 </main>
 <footer><div class="wrap"><span>© Cashmire · Projet Holberton School</span><a href="https://vlldnt.fr/">← Retour au portfolio</a></div></footer>
 </body>
